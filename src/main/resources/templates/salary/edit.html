@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Edit Employee</title>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+  <h2 class="mb-4 text-primary">Edit Employee</h2>
+
+  <div th:if="${error}" class="alert alert-danger" role="alert">
+    <span th:text="${error}">Error fetching data</span>
+  </div>
+
+  <form th:action="@{/salary-ui/employee/update}" th:object="${employee}" method="post">    <input type="hidden" th:field="*{employeeId}" />
+
+    <!-- Name -->
+    <div class="row mb-3">
+      <div class="col">
+        <label class="form-label">First Name</label>
+        <input type="text" class="form-control" th:field="*{firstName}" required/>
+      </div>
+      <div class="col">
+        <label class="form-label">Last Name</label>
+        <input type="text" class="form-control" th:field="*{lastName}" required/>
+      </div>
+    </div>
+
+    <!-- Email & Phone -->
+    <div class="row mb-3">
+      <div class="col">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" th:field="*{email}" required/>
+      </div>
+      <div class="col">
+        <label class="form-label">Phone Number</label>
+        <input type="text" class="form-control" th:field="*{phoneNumber}" />
+      </div>
+    </div>
+
+    <!-- Salary & Manager -->
+    <div class="row mb-3">
+      <div class="col">
+        <label class="form-label">Salary</label>
+        <input type="number" class="form-control" th:field="*{salary}" step="0.01" />
+      </div>
+      <div class="col">
+        <label class="form-label">Manager ID</label>
+        <input type="number" class="form-control" th:field="*{manager_Id}" />
+      </div>
+    </div>
+
+    <!-- Job -->
+    <div class="mb-3">
+      <label class="form-label">Job</label>
+      <select class="form-select" th:field="*{job_Id}">
+        <option value="">-- Select Job --</option>
+        <option th:each="job : ${jobs}"
+                th:value="${job.jobId}"
+                th:text="${job.jobTitle}">
+        </option>
+      </select>
+    </div>
+
+    <!-- Department -->
+    <div class="mb-3">
+      <label class="form-label">Department</label>
+      <select class="form-select" th:field="*{department_Id}">
+        <option value="">-- Select Department --</option>
+        <option th:each="dept : ${departments}"
+                th:value="${dept.departmentId}"
+                th:text="${dept.departmentName}">
+        </option>
+      </select>
+    </div>
+
+    <!-- Submit -->
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-success">Update</button>
+      <a th:href="@{/salary-ui}" class="btn btn-secondary">Cancel</a>
+    </div>
+  </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
