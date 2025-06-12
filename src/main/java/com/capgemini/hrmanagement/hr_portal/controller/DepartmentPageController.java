@@ -1,17 +1,18 @@
 package com.capgemini.hrmanagement.hr_portal.controller;
 
-import com.capgemini.hrmanagement.hr_portal.dto.ApiResponseDto;
-import com.capgemini.hrmanagement.hr_portal.dto.ApiResponseDtowithoutpage;
-import com.capgemini.hrmanagement.hr_portal.dto.DepartmentDTO;
-import com.capgemini.hrmanagement.hr_portal.dto.EmployeeDTO;
+import com.capgemini.hrmanagement.hr_portal.dto.*;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -102,5 +103,65 @@ public class DepartmentPageController {
         }
 
         return "employees_by_department";
+    }
+
+    @GetMapping("/employees/{id}/edit-department")
+    public String showEditDepartmentForm(@PathVariable BigDecimal id,
+                                         @RequestParam String fromDept, // To know where to redirect back to
+                                         Model model) {
+        // Fetching the specific employee's details
+        try {
+            ApiResponseDtowithoutpageSingleData<EmployeeDetailDTO> employeeResponse = webClient.get()
+                    .uri("/api/employees/" + id)
+                    .retrieve()
+                    .bodyToMono(new ParameterizedTypeReference<ApiResponseDtowithoutpageSingleData<EmployeeDetailDTO>>() {})
+                    .block();
+            model.addAttribute("employee", employeeResponse.getData());
+        } catch (Exception e) {
+            model.addAttribute("error", "Could not fetch employee details for ID: " + id);
+            return "error-page"; // Or a generic error view
+        }
+
+        //Fetching the list of all departments for the dropdown
+        try {
+            ApiResponseDtowithoutpage<DepartmentDTO> departmentResponse = webClient.get()
+                    .uri("/api/department")
+                    .retrieve()
+                    .bodyToMono(new ParameterizedTypeReference<ApiResponseDtowithoutpage<DepartmentDTO>>() {})
+                    .block();
+            model.addAttribute("departments", departmentResponse.getData());
+        } catch (Exception e) {
+            model.addAttribute("error", "Could not fetch department list.");
+        }
+
+        model.addAttribute("fromDept", fromDept);
+        return "edit_employee_department"; // The name of the HTML file
+    }
+
+
+    @PostMapping("/employees/update-department")
+    public String updateEmployeeDepartment(@RequestParam BigDecimal employeeId,
+                                           @RequestParam BigDecimal departmentId,
+                                           @RequestParam String fromDept,
+                                           RedirectAttributes redirectAttributes) {
+
+        UpdateEmployeeDepartmentDTO dto = new UpdateEmployeeDepartmentDTO(departmentId);
+
+        try {
+            webClient.put()
+                    .uri("/api/employee-dept/" + employeeId)
+                    .bodyValue(dto)
+                    .retrieve()
+                    .toBodilessEntity() // We don't need to read a response body
+                    .block();
+
+            redirectAttributes.addFlashAttribute("successMessage", "Employee department updated successfully!");
+
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Error updating department: " + e.getMessage());
+        }
+
+        // Redirect back to the department list the user came from
+        return "redirect:/employees-by-department?departmentName=" + fromDept;
     }
 }
