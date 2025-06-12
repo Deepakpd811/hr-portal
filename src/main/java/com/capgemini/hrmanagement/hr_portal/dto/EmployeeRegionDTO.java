@@ -18,4 +18,5 @@ public class EmployeeRegionDTO {
     private String department;
     private String jobTitle;
     private String city;
+    private Long departmentId; // ✅ Add this
 }
