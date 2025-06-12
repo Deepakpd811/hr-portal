@@ -1,6 +1,8 @@
 package com.capgemini.hrmanagement.hr_portal.dto;
 
+
 import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -23,3 +25,4 @@ public class EmployeeDTO {
     private BigDecimal department_Id;
     private BigDecimal manager_Id;
 }
+

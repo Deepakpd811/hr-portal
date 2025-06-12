@@ -15,7 +15,13 @@ public class ApiResponseDto<T> {
     public static class DataPage<T> {
         private List<T> content;
         private int totalPages;
-        private int number;
+        private long totalElements;     // Add this for 'total records'
+        private int number;             // Current page number (0-indexed)
         private int size;
+        private int numberOfElements;
+
+        public boolean isEmpty() {
+            return content == null || content.isEmpty();
+        }
     }
 }
