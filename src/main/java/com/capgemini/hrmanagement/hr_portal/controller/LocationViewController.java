@@ -2,7 +2,6 @@ package com.capgemini.hrmanagement.hr_portal.controller;
 
 import com.capgemini.hrmanagement.hr_portal.dto.DepartmentDTO;
 import com.capgemini.hrmanagement.hr_portal.service.DepartmentFrontendService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +20,7 @@ public class LocationViewController {
     @GetMapping("/location")
     public String showLocationSelection(Model model) {
         model.addAttribute("locations", departmentFrontendService.getAllLocations());
-        return "index";
+        return "location";
     }
 
     @GetMapping("/departments")
