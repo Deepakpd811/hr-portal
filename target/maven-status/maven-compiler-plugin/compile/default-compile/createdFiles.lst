@@ -1,6 +1,0 @@
-com\capgemini\hrmanagement\hr_portal\dto\DepartmentDTO.class
-com\capgemini\hrmanagement\hr_portal\controller\LocationViewController.class
-com\capgemini\hrmanagement\hr_portal\HrPortalApplication.class
-com\capgemini\hrmanagement\hr_portal\config\WebClientConfig.class
-com\capgemini\hrmanagement\hr_portal\dto\LocationDTO.class
-com\capgemini\hrmanagement\hr_portal\service\DepartmentFrontendService.class
