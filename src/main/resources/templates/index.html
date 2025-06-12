@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>HR Management Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .member-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-radius: 0.75rem;
+        }
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+        }
+        .disabled-card {
+            background-color: #e9ecef;
+            cursor: not-allowed;
+        }
+        .disabled-card:hover {
+            transform: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+<div class="container text-center py-5">
+    <h1 class="display-4">Human Resource Management</h1>
+    <p class="lead mb-5">A Capgemini Team Project</p>
+    <div class="row g-4 justify-content-center">
+
+        <!-- Vanshika's Tile (Active) -->
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <a th:href="@{/employees-by-department}" class="card member-card text-decoration-none text-dark h-100">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h5 class="card-title text-primary">Vanshika</h5>
+                    <p class="card-text small text-muted">Departments Module</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Deepak's Tile (Disabled) -->
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card member-card disabled-card h-100">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h5 class="card-title">Deepak</h5>
+                    <p class="card-text small text-muted">Region Module</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rishav's Tile (Disabled) -->
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card member-card disabled-card h-100">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h5 class="card-title">Rishav</h5>
+                    <p class="card-text small text-muted">Module</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Amit's Tile (Disabled) -->
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card member-card disabled-card h-100">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h5 class="card-title">Amit</h5>
+                    <p class="card-text small text-muted">Module Inactive</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Himanshi's Tile (Disabled) -->
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card member-card disabled-card h-100">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h5 class="card-title">Himanshi</h5>
+                    <p class="card-text small text-muted">Module Inactive</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Raunak's Tile (Disabled) -->
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card member-card disabled-card h-100">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h5 class="card-title">Raunak</h5>
+                    <p class="card-text small text-muted">Module Inactive</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Divyam's Tile (Disabled) -->
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card member-card disabled-card h-100">
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h5 class="card-title">Divyam</h5>
+                    <p class="card-text small text-muted">Module Inactive</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
