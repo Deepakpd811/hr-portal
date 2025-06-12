@@ -64,7 +64,7 @@ public class EmployeeController {
         model.addAttribute("currentPage", data.get("currentPage"));
         model.addAttribute("totalPages", data.get("totalPages"));
 
-        return "employee-list";
+        return "employee/employee-list";
     }
 
 
@@ -162,7 +162,7 @@ public class EmployeeController {
             model.addAttribute("departments", departments);
             model.addAttribute("jobs", jobs);
 
-            return "edit";
+            return "employee/edit";
 
         } catch (Exception e) {
             log.error("Failed to load employee form for ID {}: {}", id, e.getMessage(), e);
@@ -222,7 +222,7 @@ public class EmployeeController {
         model.addAttribute("departments", departments);
         model.addAttribute("jobs", jobs);
 
-        return "create-employee";
+        return "employee/create-employee";
     }
 
     @PostMapping("/employees/save")

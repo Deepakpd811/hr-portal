@@ -55,7 +55,7 @@ public class DepartmentPageController {
         model.addAttribute("sortDir", sortDir);
         model.addAttribute("sortBy", sortBy);
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
-        return "employees_by_department";
+        return "department/employees_by_department";
     }
 
     @PostMapping("/department/create")
@@ -104,7 +104,7 @@ public class DepartmentPageController {
         model.addAttribute("departments", deptsResponse.map(ApiResponseDtowithoutpage::getData).orElse(Collections.emptyList()));
         model.addAttribute("fromDept", fromDept);
 
-        return "edit_employee_department";
+        return "department/edit_employee_department";
     }
 
     private void populateDepartmentsDropdown(Model model) {
