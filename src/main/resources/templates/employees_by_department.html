@@ -8,12 +8,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
 
     <style>
-        /* This targets the container that Choices.js creates */
-        .choices {
+        {
             width: 100%;
         }
-        /* This targets the visible part of the dropdown input */
-        .choices__inner {
+        {
             background-color: #fff;
             padding: .375rem .75rem !important; /* Important to override Bootstrap */
             border: 1px solid #dee2e6;
@@ -21,8 +19,7 @@
             min-height: auto;
             width: 100%;
         }
-        /* This targets the dropdown list itself */
-        .choices__list--dropdown {
+        {
             width: 100%;
         }
     </style>
@@ -42,16 +39,14 @@
     <div class="card mb-4">
         <div class="card-header">Select a Department</div>
         <div class="card-body">
-            <form th:action="@{/employees-by-department}" method="get" class="d-flex align-items-center">
-                <div class="flex-grow-1 me-2"> <select id="department-select" name="departmentName">
+            <form id="department-form" th:action="@{/employees-by-department}" method="get">
+                <select id="department-select" name="departmentName">
                     <option value="">-- Choose Department --</option>
                     <option th:each="dept : ${departments}"
                             th:value="${dept}"
                             th:text="${dept}"
                             th:selected="${dept == selectedDepartmentName}"></option>
                 </select>
-                </div>
-                <button type="submit" class="btn btn-primary">Search</button>
             </form>
         </div>
     </div>
@@ -114,9 +109,16 @@
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        new Choices('#department-select', {
+        const selectElement = document.getElementById('department-select');
+
+        const choices = new Choices(selectElement, {
             searchEnabled: true,
             itemSelectText: 'Press to select'
+        });
+
+        // Add an event listener to the original select element.
+        selectElement.addEventListener('change', function() {
+            document.getElementById('department-form').submit();
         });
     });
 </script>
