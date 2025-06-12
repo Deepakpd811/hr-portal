@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
-@RequestMapping("/region-ui")
+@RequestMapping("/employees-by-region")
 public class RegionPageController {
 
     private final WebClient webClient;
@@ -119,7 +119,7 @@ public class RegionPageController {
         }
 
 
-        return "redirect:/region-ui";
+        return "redirect:/employees-by-region";
     }
 
 
