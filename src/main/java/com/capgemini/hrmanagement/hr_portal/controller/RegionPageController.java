@@ -1,6 +1,8 @@
 package com.capgemini.hrmanagement.hr_portal.controller;
 
 import com.capgemini.hrmanagement.hr_portal.dto.*;
+import com.capgemini.hrmanagement.hr_portal.dto.departmentLocation.ApiResponseDto;
+import com.capgemini.hrmanagement.hr_portal.dto.departmentLocation.ApiResponseDtowithoutpage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Controller;

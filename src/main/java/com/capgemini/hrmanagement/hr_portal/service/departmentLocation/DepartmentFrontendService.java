@@ -1,6 +1,9 @@
-package com.capgemini.hrmanagement.hr_portal.service;
+package com.capgemini.hrmanagement.hr_portal.service.departmentLocation;
 
-import com.capgemini.hrmanagement.hr_portal.dto.*;
+import com.capgemini.hrmanagement.hr_portal.dto.departmentLocation.ApiResponseDto;
+import com.capgemini.hrmanagement.hr_portal.dto.departmentLocation.ApiResponseDtowithoutpage;
+import com.capgemini.hrmanagement.hr_portal.dto.departmentLocation.DepartmentDTO;
+import com.capgemini.hrmanagement.hr_portal.dto.departmentLocation.LocationDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
