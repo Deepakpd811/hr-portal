@@ -11,9 +11,9 @@
     <!-- Header and Region Selection Form -->
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="mb-0">Employees in Region: <span th:text="${regionName}">EUROPE</span></h2>
-        <form method="get" th:action="@{/employees-by-region}" class="d-flex align-items-center">
-            <div class="me-2">
-                <label for="regionName" class="form-label mb-0">Select Region:</label>
+        <form method="get" th:action="@{/employees-by-region}" class="mb-3">
+            <div class="mb-2">
+                <label for="regionName" class="form-label">Select Region:</label>
                 <select id="regionName" name="regionName" class="form-select form-select-sm">
                     <option th:each="region : ${regions}"
                             th:value="${region}"
@@ -24,6 +24,7 @@
             </div>
             <button type="submit" class="btn btn-primary btn-sm">Search</button>
         </form>
+
     </div>
 
     <!-- Employees Table -->

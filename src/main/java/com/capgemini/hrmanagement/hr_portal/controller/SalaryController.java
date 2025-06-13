@@ -48,7 +48,7 @@ public class SalaryController {
     public String getEmployeesWithHighSalary(
             @RequestParam(defaultValue = "5000") BigDecimal amount,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "10") int size,
             Model model) {
 
         // Request one extra item to detect if next page exists

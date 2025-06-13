@@ -15,12 +15,12 @@
             <option th:each="dept : ${departments}"
                     th:value="${dept.departmentId}"
                     th:text="${dept.departmentName}"
-                    th:selected="${dept.departmentId} == ${employee.department.departmentId}">
+                    th:selected="${dept.departmentId == (employee.department?.departmentId ?: -1)}">
             </option>
         </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Update</button>
-    <a th:href="@{/employees-by-region}" class="btn btn-secondary">Cancel</a>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+    <a th:href="@{/region-ui}" class="btn btn-secondary">Cancel</a>
 </form>
 
 </body>
