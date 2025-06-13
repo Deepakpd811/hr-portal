@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
-@RequestMapping("/region-ui")
+@RequestMapping("/employees-by-region")
 public class RegionPageController {
 
     private final WebClient webClient;
@@ -66,7 +66,7 @@ public class RegionPageController {
             model.addAttribute("regionName", regionName);
         }
 
-        return "employees-by-region";
+        return "region/employees-by-region";
     }
 
 
@@ -96,7 +96,7 @@ public class RegionPageController {
 
         model.addAttribute("employee", employee);
         model.addAttribute("departments", response.getData());
-        return "edit-employee";
+        return "region/edit-employee";
     }
 
     @PostMapping("/update-department/{id}")
@@ -119,7 +119,7 @@ public class RegionPageController {
         }
 
 
-        return "redirect:/region-ui";
+        return "redirect:/employees-by-region";
     }
 
 
